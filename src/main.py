@@ -104,7 +104,7 @@ def go(ps_list: list, mode: str):
         print_ps_data(ps, mode)
 
         if mode == 'kill':
-            try: 
+            try:
                 ps.terminate()
             except:
                 print('ACCESS DENIED')
@@ -129,3 +129,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
