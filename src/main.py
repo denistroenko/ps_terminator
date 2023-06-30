@@ -80,11 +80,26 @@ def filter_ps_list(ps_list: list,
 
 
 def print_ps_data(ps, mode):
-        message = f'{ps.username()} '
+        message = ''
+
+        try:
+            message += f'{ps.username()} '
+        except psutil.AccessDenied:
+            pass
+
         if mode == 'kill':
             message += f'KILLING '
-        message += f'[pid {ps.info["pid"]}] '
-        message += f'{ps.info["name"]} '
+
+        try:
+            message += f'[pid {ps.info["pid"]}] '
+        except psutil.AccessDenied:
+            pass
+
+        try:
+            message += f'{ps.info["name"]} '
+        except psutil.AccessDenied:
+            pass
+
         try:
             message += f'({ps.exe()}), '
         except psutil.AccessDenied:
